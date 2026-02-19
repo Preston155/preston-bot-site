@@ -8,116 +8,169 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-    color: white;
-    overflow-x: hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-/* NAV */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* NAVBAR */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 10%;
-    position: fixed;
-    width: 100%;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  padding: 20px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
 nav h2 {
-    color: #5865F2;
+  color: #5865F2;
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 25px;
-    font-weight: 500;
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: 500;
 }
 
 /* HERO */
 header {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at top, #1a1a1a, #0f0f0f);
+  padding: 0 20px;
 }
 
 header h1 {
-    font-size: 3.2rem;
-    color: #5865F2;
+  font-size: 3.5rem;
+  color: #5865F2;
 }
 
 header p {
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #bbb;
-    max-width: 600px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #bbb;
+  max-width: 650px;
 }
 
 .btn {
-    margin-top: 30px;
-    padding: 14px 35px;
-    background: #5865F2;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
+  margin-top: 30px;
+  padding: 15px 40px;
+  background: #5865F2;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .btn:hover {
-    background: #4752C4;
+  background: #4752C4;
+  transform: scale(1.05);
 }
 
-/* FEATURES */
+/* SECTION */
 section {
-    padding: 100px 10%;
-    text-align: center;
+  padding: 120px 10%;
+  text-align: center;
 }
 
 section h2 {
-    font-size: 2.2rem;
+  font-size: 2.4rem;
 }
 
+/* FEATURE CARDS */
 .cards {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+  margin-top: 60px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card {
-    background: #1f1f1f;
-    padding: 35px;
-    width: 280px;
-    border-radius: 15px;
-    transition: 0.3s;
+  background: #1c1c1c;
+  padding: 40px;
+  width: 300px;
+  border-radius: 15px;
+  transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
+  transform: translateY(-10px);
 }
 
 .card h3 {
-    margin-bottom: 10px;
-    color: #5865F2;
+  color: #5865F2;
+  margin-bottom: 10px;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.stat h3 {
+  font-size: 2.5rem;
+  color: #5865F2;
+}
+
+/* PRICING */
+.pricing {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+.price-card {
+  background: #1c1c1c;
+  padding: 40px;
+  width: 300px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.price-card:hover {
+  transform: translateY(-10px);
+}
+
+.price-card h3 {
+  color: #5865F2;
+}
+
+.price {
+  font-size: 2rem;
+  margin: 20px 0;
 }
 
 /* FOOTER */
 footer {
-    text-align: center;
-    padding: 40px;
-    background: #111;
+  text-align: center;
+  padding: 50px;
+  background: #111;
+  margin-top: 80px;
 }
 </style>
 </head>
@@ -125,49 +178,75 @@ footer {
 <body>
 
 <nav>
-    <h2>Preston Bot</h2>
-    <div>
-        <a href="#">Home</a>
-        <a href="#features">Features</a>
-        <a href="#invite">Invite</a>
-    </div>
+  <h2>Preston Bot</h2>
+  <div>
+    <a href="#">Home</a>
+    <a href="#features">Features</a>
+    <a href="#stats">Stats</a>
+    <a href="#pricing">Pricing</a>
+  </div>
 </nav>
 
 <header>
-    <h1>The Ultimate Discord Bot 🚀</h1>
-    <p>Advanced moderation, ticket systems, SSU voting, dashboards, giveaways, leveling & more — built for serious communities.</p>
-    <a href="#" class="btn">Invite Bot</a>
+  <h1>Next Generation Discord Automation 🤖</h1>
+  <p>Advanced moderation, tickets, SSU voting, giveaways, dashboards and powerful automation tools built for serious communities.</p>
+  <a href="#" class="btn">Invite Bot</a>
 </header>
 
 <section id="features">
-    <h2>Powerful Features</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>🎫 Ticket System</h3>
-            <p>Fully automated ticket panels with logs and transcripts.</p>
-        </div>
-        <div class="card">
-            <h3>📊 SSU Voting</h3>
-            <p>Persistent vote tracking with auto-start sessions.</p>
-        </div>
-        <div class="card">
-            <h3>🛡 Moderation</h3>
-            <p>Advanced moderation, logging, and permission systems.</p>
-        </div>
-        <div class="card">
-            <h3>🎉 Giveaways</h3>
-            <p>Persistent giveaways that survive bot restarts.</p>
-        </div>
+  <h2>Powerful Features</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>🎫 Smart Tickets</h3>
+      <p>Auto panels, transcripts, staff tools & claim system.</p>
     </div>
+    <div class="card">
+      <h3>📊 Persistent SSU</h3>
+      <p>Vote tracking that survives restarts.</p>
+    </div>
+    <div class="card">
+      <h3>🛡 Advanced Moderation</h3>
+      <p>Logging, role systems & automated actions.</p>
+    </div>
+  </div>
 </section>
 
-<section id="invite">
-    <h2>Ready to Upgrade Your Server?</h2>
-    <a href="#" class="btn">Add to Discord</a>
+<section id="stats">
+  <h2>Trusted By Communities</h2>
+  <div class="stats">
+    <div class="stat">
+      <h3>150+</h3>
+      <p>Servers</p>
+    </div>
+    <div class="stat">
+      <h3>25,000+</h3>
+      <p>Users</p>
+    </div>
+    <div class="stat">
+      <h3>99.9%</h3>
+      <p>Uptime</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <h2>Simple Pricing</h2>
+  <div class="pricing">
+    <div class="price-card">
+      <h3>Free</h3>
+      <div class="price">$0</div>
+      <p>Basic features for small servers.</p>
+    </div>
+    <div class="price-card">
+      <h3>Premium</h3>
+      <div class="price">$9/mo</div>
+      <p>Advanced dashboards & automation.</p>
+    </div>
+  </div>
 </section>
 
 <footer>
-    © 2026 Preston Bot. All rights reserved.
+  © 2026 Preston Bot. All rights reserved.
 </footer>
 
 </body>
