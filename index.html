@@ -85,7 +85,6 @@ header p {
   transform: scale(1.05);
 }
 
-/* SECTION */
 section {
   padding: 120px 10%;
   text-align: center;
@@ -95,7 +94,6 @@ section h2 {
   font-size: 2.4rem;
 }
 
-/* FEATURE CARDS */
 .cards {
   margin-top: 60px;
   display: flex;
@@ -135,36 +133,6 @@ section h2 {
   color: #5865F2;
 }
 
-/* PRICING */
-.pricing {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-top: 60px;
-}
-
-.price-card {
-  background: #1c1c1c;
-  padding: 40px;
-  width: 300px;
-  border-radius: 15px;
-  transition: 0.3s;
-}
-
-.price-card:hover {
-  transform: translateY(-10px);
-}
-
-.price-card h3 {
-  color: #5865F2;
-}
-
-.price {
-  font-size: 2rem;
-  margin: 20px 0;
-}
-
 /* FOOTER */
 footer {
   text-align: center;
@@ -183,7 +151,6 @@ footer {
     <a href="#">Home</a>
     <a href="#features">Features</a>
     <a href="#stats">Stats</a>
-    <a href="#pricing">Pricing</a>
   </div>
 </nav>
 
@@ -212,35 +179,19 @@ footer {
 </section>
 
 <section id="stats">
-  <h2>Trusted By Communities</h2>
+  <h2>Live Bot Statistics</h2>
   <div class="stats">
     <div class="stat">
-      <h3>150+</h3>
+      <h3 id="serverCount">0</h3>
       <p>Servers</p>
     </div>
     <div class="stat">
-      <h3>25,000+</h3>
+      <h3 id="userCount">0</h3>
       <p>Users</p>
     </div>
     <div class="stat">
-      <h3>99.9%</h3>
-      <p>Uptime</p>
-    </div>
-  </div>
-</section>
-
-<section id="pricing">
-  <h2>Simple Pricing</h2>
-  <div class="pricing">
-    <div class="price-card">
-      <h3>Free</h3>
-      <div class="price">$0</div>
-      <p>Basic features for small servers.</p>
-    </div>
-    <div class="price-card">
-      <h3>Premium</h3>
-      <div class="price">$9/mo</div>
-      <p>Advanced dashboards & automation.</p>
+      <h3 id="uptime">0</h3>
+      <p>Seconds Online</p>
     </div>
   </div>
 </section>
@@ -248,6 +199,18 @@ footer {
 <footer>
   © 2026 Preston Bot. All rights reserved.
 </footer>
+
+<!-- 🔥 API FETCH (Netlify Proxy Ready) -->
+<script>
+fetch("/api/stats")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("serverCount").innerText = data.servers;
+    document.getElementById("userCount").innerText = data.users;
+    document.getElementById("uptime").innerText = data.uptime;
+  })
+  .catch(err => console.error("API Error:", err));
+</script>
 
 </body>
 </html>
