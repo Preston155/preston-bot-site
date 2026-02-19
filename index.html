@@ -21,7 +21,6 @@ body {
   color: white;
 }
 
-/* NAVBAR */
 nav {
   position: fixed;
   width: 100%;
@@ -34,9 +33,7 @@ nav {
   z-index: 1000;
 }
 
-nav h2 {
-  color: #5865F2;
-}
+nav h2 { color: #5865F2; }
 
 nav a {
   color: white;
@@ -45,7 +42,6 @@ nav a {
   font-weight: 500;
 }
 
-/* HERO */
 header {
   height: 100vh;
   display: flex;
@@ -119,7 +115,6 @@ section h2 {
   margin-bottom: 10px;
 }
 
-/* STATS */
 .stats {
   display: flex;
   justify-content: center;
@@ -133,7 +128,6 @@ section h2 {
   color: #5865F2;
 }
 
-/* FOOTER */
 footer {
   text-align: center;
   padding: 50px;
@@ -149,8 +143,8 @@ footer {
   <h2>Preston Bot</h2>
   <div>
     <a href="#">Home</a>
-    <a href="#features">Features</a>
     <a href="#stats">Stats</a>
+    <a href="#tickets">Tickets</a>
   </div>
 </nav>
 
@@ -159,24 +153,6 @@ footer {
   <p>Advanced moderation, tickets, SSU voting, giveaways, dashboards and powerful automation tools built for serious communities.</p>
   <a href="#" class="btn">Invite Bot</a>
 </header>
-
-<section id="features">
-  <h2>Powerful Features</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>🎫 Smart Tickets</h3>
-      <p>Auto panels, transcripts, staff tools & claim system.</p>
-    </div>
-    <div class="card">
-      <h3>📊 Persistent SSU</h3>
-      <p>Vote tracking that survives restarts.</p>
-    </div>
-    <div class="card">
-      <h3>🛡 Advanced Moderation</h3>
-      <p>Logging, role systems & automated actions.</p>
-    </div>
-  </div>
-</section>
 
 <section id="stats">
   <h2>Live Bot Statistics</h2>
@@ -196,20 +172,74 @@ footer {
   </div>
 </section>
 
+<section id="tickets">
+  <h2>Live Ticket Status 🎫</h2>
+  <div class="stats">
+    <div class="stat">
+      <h3 id="openTickets">0</h3>
+      <p>Open</p>
+    </div>
+    <div class="stat">
+      <h3 id="claimedTickets">0</h3>
+      <p>Claimed</p>
+    </div>
+    <div class="stat">
+      <h3 id="closedTickets">0</h3>
+      <p>Closed</p>
+    </div>
+  </div>
+</section>
+
 <footer>
   © 2026 Preston Bot. All rights reserved.
 </footer>
 
-<!-- 🔥 API FETCH (Netlify Proxy Ready) -->
 <script>
-fetch("/api/stats")
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("serverCount").innerText = data.servers;
-    document.getElementById("userCount").innerText = data.users;
-    document.getElementById("uptime").innerText = data.uptime;
-  })
-  .catch(err => console.error("API Error:", err));
+function animateValue(id, value) {
+  const el = document.getElementById(id);
+  let start = 0;
+  const duration = 800;
+  const increment = value / (duration / 16);
+
+  const timer = setInterval(() => {
+    start += increment;
+    if (start >= value) {
+      el.innerText = value;
+      clearInterval(timer);
+    } else {
+      el.innerText = Math.floor(start);
+    }
+  }, 16);
+}
+
+function loadStats() {
+  fetch("/api/stats")
+    .then(res => res.json())
+    .then(data => {
+      animateValue("serverCount", data.servers);
+      animateValue("userCount", data.users);
+      animateValue("uptime", data.uptime);
+    })
+    .catch(err => console.error("Stats API Error:", err));
+}
+
+function loadTickets() {
+  fetch("/api/tickets")
+    .then(res => res.json())
+    .then(data => {
+      animateValue("openTickets", data.open);
+      animateValue("claimedTickets", data.claimed);
+      animateValue("closedTickets", data.closed);
+    })
+    .catch(err => console.error("Ticket API Error:", err));
+}
+
+loadStats();
+loadTickets();
+setInterval(() => {
+  loadStats();
+  loadTickets();
+}, 15000);
 </script>
 
 </body>
